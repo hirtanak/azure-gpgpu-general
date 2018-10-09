@@ -97,7 +97,7 @@
 		"jumpBoxVHDContainerName": "[concat(variables('jumpBoxName'), 'vhd')]",
 		"jumpBoxIPConfigName": "[concat(variables('jumpBoxName'), 'ipconfig')]",
 		"jumpBoxNicName": "[concat(variables('jumpBoxName'), 'nic')]",
-		"storageAccountType": "Standard_LRS",
+		"storageAccountType": "StandardSSD_LRS",
 		"newStorageAccountSuffix": "[concat(variables('namingInfix'), 'sa')]",
 		"uniqueStringArray": [
 			"[concat(uniqueString(concat(resourceGroup().id, variables('newStorageAccountSuffix'), '0')))]"
@@ -202,16 +202,16 @@
 		"cnSetupScript": "cn-setup.sh",
 		"hnSetupScript": "hn-setup.sh",
 		"osType": {
-			"publisher": "microsoft-ads",
-			"offer": "linux-data-science-vm",
-			"sku": "linuxdsvm",
+			"publisher": "OpenLogic",
+			"offer": "CentOS",
+			"sku": "7.5",
 			"version": "latest"
 		},
 		"imageReference": "[variables('osType')]",
 		"JBoxType": {
-			"publisher": "microsoft-ads",
-			"offer": "linux-data-science-vm",
-			"sku": "linuxdsvm",
+			"publisher": "OpenLogic",
+			"offer": "CentOS",
+			"sku": "7.5",
 			"version": "latest"
 		},
 		"JBimageReference": "[variables('JBoxType')]",
@@ -306,11 +306,6 @@
 		"name": "[variables('jumpBoxName')]",
 		"apiVersion": "[variables('computeApiVersion')]",
 		"location": "[variables('resourceLocation')]",
-		"plan": {
-			"name": "linuxdsvm",
-			"publisher": "microsoft-ads",
-			"product": "linux-data-science-vm"
-			},
 		"properties": {
 			"hardwareProfile": {
 				"vmSize": "[parameters('vmSku')]"
