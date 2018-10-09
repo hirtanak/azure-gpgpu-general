@@ -1,4 +1,4 @@
-# azure-gpgpu-poc
+# azure-gpgpu-general
 Azure Resource Manager Templates for GPGPU アプリケーション用のAzure ARMテンプレートです
 
 <table>
