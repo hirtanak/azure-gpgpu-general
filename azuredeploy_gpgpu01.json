@@ -224,7 +224,7 @@
 			],
 			"commandToExecute": ""
 		},
-		"computeApiVersion": "2017-03-30",
+		"computeApiVersion": "2018-04-01",
 		"networkApiVersion": "2016-03-30",
 		"storageApiVersion": "2015-06-15"
 	},
