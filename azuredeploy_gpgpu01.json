@@ -376,11 +376,6 @@
 		"name": "[variables('namingInfix')]",
 		"apiVersion": "[variables('computeApiVersion')]",
 		"location": "[variables('resourceLocation')]",
-		            "plan": {
-			"name": "linuxdsvm",
-			"publisher": "OpenLogic",
-		        "product": "CentOS-HPC"
-			},
 		"properties": {
 			"overprovision": "true",
 			"upgradePolicy": {
