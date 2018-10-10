@@ -102,11 +102,11 @@ done
 
 # downlaod scripts
 cd /home/$USER/bin
-wget https://raw.githubusercontent.com/hirtanak/azure-gpgpu-cluster-poc/master/full-pingpong.sh
+wget https://raw.githubusercontent.com/hirtanak/azure-gpgpu-general/master/full-pingpong.sh
 chmod +x ./full-pingpong.sh
-wget https://raw.githubusercontent.com/hirtanak/azure-gpgpu-cluster-poc/master/pingsweep.sh
+wget https://raw.githubusercontent.com/hirtanak/azure-gpgpu-general/master/pingsweep.sh
 chmod +x ./pingsweep.sh
-wget https://raw.githubusercontent.com/hirtanak/azure-gpgpu-cluster-poc/master/createraid.sh
+wget https://raw.githubusercontent.com/hirtanak/azure-general/master/createraid.sh
 chmod +x ./createraid.sh
 
 chown -R $USER:$USER /home/$USER/.ssh/
