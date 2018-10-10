@@ -379,7 +379,7 @@
 				"[concat('Microsoft.Compute/virtualMachines/', variables('jumpBoxName'))]",
 				"[concat('Microsoft.Compute/virtualMachineScaleSets/',variables('namingInfix'))]"
 			]
-		}],
+		},
 		{
 			"name": "NVIDIA",
 			"type": "extensions",
@@ -397,7 +397,7 @@
 				"settings": {
 				}
 			}
-		},
+		}],
 		"dependsOn": [
 			"[concat('Microsoft.Storage/storageAccounts/', variables('jumpBoxSAName'))]",
 			"[concat('Microsoft.Network/networkInterfaces/', variables('jumpBoxNicName'))]"
