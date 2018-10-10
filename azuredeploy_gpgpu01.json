@@ -227,7 +227,7 @@
 		},
 		"computeApiVersion": "2018-04-01",
 		"networkApiVersion": "2016-03-30",
-		"storageApiVersion": "2018-07-01"
+		"storageApiVersion": "2018-10-01"
 	},
 	"resources": [{
 		"type": "Microsoft.Network/virtualNetworks",
