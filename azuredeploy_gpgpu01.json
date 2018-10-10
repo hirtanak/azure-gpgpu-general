@@ -250,21 +250,49 @@
 		"type": "Microsoft.Storage/storageAccounts",
 		"name": "[variables('jumpBoxSAName')]",
 		"apiVersion": "[variables('storageApiVersion')]",
-		"location": "[variables('resourceLocation')]",
-		"properties": {
-			"accountType": "[variables('storageAccountType')]"
-		}
+                "sku": {
+                        "name": "[variables('storageAccountType')]",
+                        "restrictions": [
+                                {
+                                "reasonCode": ""
+                                }
+                        ]
+                },
+                "kind": "string",
+                "location": "[variables('resourceLocation')]",
+                "copy": {
+                        "name": "storageLoop",
+                        "count": "[variables('saCount')]"
+                },
+                "tags": {},
+                "identity": {
+                        "type": "SystemAssigned"
+                        },
+                "properties": {
+                }
 	}, {
 		"type": "Microsoft.Storage/storageAccounts",
 		"name": "[concat(variables('uniqueStringArray')[copyIndex()], variables('newStorageAccountSuffix'))]",
 		"apiVersion": "[variables('storageApiVersion')]",
+		"sku": {
+			"name": "[variables('storageAccountType')]",
+	        	"restrictions": [
+		        	{
+				"reasonCode": ""
+				}
+			]
+		},
+		"kind": "string",
 		"location": "[variables('resourceLocation')]",
 		"copy": {
 			"name": "storageLoop",
 			"count": "[variables('saCount')]"
 		},
+		"tags": {},
+		"identity": {
+			"type": "SystemAssigned"
+			},
 		"properties": {
-			"accountType": "[variables('storageAccountType')]"
 		}
 	}, {
 		"type": "Microsoft.Network/publicIPAddresses",
