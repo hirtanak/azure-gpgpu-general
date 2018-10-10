@@ -380,6 +380,24 @@
 				"[concat('Microsoft.Compute/virtualMachineScaleSets/',variables('namingInfix'))]"
 			]
 		}],
+		{
+			"name": "NVIDIA",
+			"type": "extensions",
+			"apiVersion": "2015-06-15",
+			"location": "[variables('resourceLocation')]",
+			"dependsOn": [
+				"[concat('Microsoft.Compute/virtualMachines/', variables('jumpBoxName'))]",
+				"[concat('Microsoft.Compute/virtualMachines/', variables('jumpBoxName'),'/', 'masterExtension')]"	
+			],
+			"properties": {
+				"publisher": "Microsoft.HpcCompute",
+				"type": "NvidiaGpuDriverLinux",
+				"typeHandlerVersion": "1.1",
+				"autoUpgradeMinorVersion": true,
+				"settings": {
+				}
+			}
+		},
 		"dependsOn": [
 			"[concat('Microsoft.Storage/storageAccounts/', variables('jumpBoxSAName'))]",
 			"[concat('Microsoft.Network/networkInterfaces/', variables('jumpBoxNicName'))]"
