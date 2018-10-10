@@ -98,6 +98,7 @@
 		"jumpBoxIPConfigName": "[concat(variables('jumpBoxName'), 'ipconfig')]",
 		"jumpBoxNicName": "[concat(variables('jumpBoxName'), 'nic')]",
 		"storageAccountType": "Standard_LRS",
+		"storageKind": "StorageV2",
 		"newStorageAccountSuffix": "[concat(variables('namingInfix'), 'sa')]",
 		"uniqueStringArray": [
 			"[concat(uniqueString(concat(resourceGroup().id, variables('newStorageAccountSuffix'), '0')))]"
@@ -252,13 +253,9 @@
 		"apiVersion": "[variables('storageApiVersion')]",
                 "sku": {
                         "name": "[variables('storageAccountType')]",
-                        "restrictions": [
-                                {
-                                "reasonCode": ""
-                                }
-                        ]
+                        "restrictions": [ ]
                 },
-                "kind": "string",
+                "kind": "[variables(`storageKind`)]",
                 "location": "[variables('resourceLocation')]",
                 "copy": {
                         "name": "storageLoop",
@@ -276,13 +273,9 @@
 		"apiVersion": "[variables('storageApiVersion')]",
 		"sku": {
 			"name": "[variables('storageAccountType')]",
-	        	"restrictions": [
-		        	{
-				"reasonCode": ""
-				}
-			]
+	        	"restrictions": []
 		},
-		"kind": "string",
+		"kind": "[variables(`storageKind`)]",
 		"location": "[variables('resourceLocation')]",
 		"copy": {
 			"name": "storageLoop",
