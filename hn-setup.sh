@@ -28,7 +28,7 @@ mkdir -p /home/$USER/.ssh
 mkdir -p /home/$USER/bin
 mkdir -p /mnt/lts
 
-ln -s /data /home/$USER/data
+ln -s /mnt/resource/scratch /home/$USER/scratch
 ln -s /mnt/lts /home/$USER/lts
 
 #Following lines are only needed if the head node is an RDMA connected VM
