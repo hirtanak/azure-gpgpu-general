@@ -23,7 +23,7 @@ cat << EOF >> /etc/security/limits.conf
 EOF
 
 #Create directories needed for configuration
-SHARE_HOME=/data/
+SHARE_HOME=/mnt/resource/scratch
 mkdir -p /home/$USER/.ssh
 mkdir -p /home/$USER/bin
 mkdir -p /mnt/lts
@@ -55,7 +55,7 @@ yum install -y azure-cli
 #./install_ganglia.sh $myhost azure 8649
 
 #Setup the NFS server
-echo "/data $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
+echo "/mnt/resource/scratch $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
 systemctl enable rpcbind
 systemctl enable nfs-server
 systemctl enable nfs-lock

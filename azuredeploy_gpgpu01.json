@@ -204,8 +204,8 @@
 		"hnSetupScript": "hn-setup.sh",
 		"osType": {
 			"publisher": "OpenLogic",
-			"offer": "CentOS",
-			"sku": "7.5",
+			"offer": "CentOS-HPC",
+			"sku": "7.4",
 			"version": "latest"
 		},
 		"imageReference": "[variables('osType')]",
@@ -227,7 +227,7 @@
 		},
 		"computeApiVersion": "2018-04-01",
 		"networkApiVersion": "2016-03-30",
-		"storageApiVersion": "2018-10-01"
+		"storageApiVersion": "2018-03-01-preview"
 	},
 	"resources": [{
 		"type": "Microsoft.Network/virtualNetworks",
@@ -252,9 +252,7 @@
 		"name": "[variables('jumpBoxSAName')]",
 		"apiVersion": "[variables('storageApiVersion')]",
                 "sku": {
-                        "name": "[variables('storageAccountType')]",
-                        "restrictions": [ ]
-                },
+                        "name": "[variables('storageAccountType')]"},
                 "kind": "[variables('storageKind')]",
                 "location": "[variables('resourceLocation')]",
                 "copy": {
@@ -272,8 +270,7 @@
 		"name": "[concat(variables('uniqueStringArray')[copyIndex()], variables('newStorageAccountSuffix'))]",
 		"apiVersion": "[variables('storageApiVersion')]",
 		"sku": {
-			"name": "[variables('storageAccountType')]",
-	        	"restrictions": []
+			"name": "[variables('storageAccountType')]"
 		},
 		"kind": "[variables('storageKind')]",
 		"location": "[variables('resourceLocation')]",
