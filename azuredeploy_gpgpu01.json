@@ -378,8 +378,8 @@
 		"location": "[variables('resourceLocation')]",
 		            "plan": {
 			"name": "linuxdsvm",
-			"publisher": "microsoft-ads",
-		        "product": "linux-data-science-vm"
+			"publisher": "OpenLogic",
+		        "product": "CentOS-HPC"
 			},
 		"properties": {
 			"overprovision": "true",
