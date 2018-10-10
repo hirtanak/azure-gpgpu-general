@@ -227,7 +227,7 @@
 		},
 		"computeApiVersion": "2018-04-01",
 		"networkApiVersion": "2016-03-30",
-		"storageApiVersion": "2018-03-01-preview"
+		"storageApiVersion": "2018-07-01"
 	},
 	"resources": [{
 		"type": "Microsoft.Network/virtualNetworks",
@@ -359,7 +359,7 @@
 		"resources": [{
 			"type": "extensions",
 			"name": "masterExtension",
-			"apiVersion": "[variables('storageApiVersion')]",
+			"apiVersion": "[variables('computeApiVersion')]",
 			"location": "[variables('resourceLocation')]",
 			"tags": {
 				"displayName": "ScriptExtension"
