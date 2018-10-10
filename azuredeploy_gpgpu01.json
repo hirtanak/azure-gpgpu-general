@@ -6,8 +6,8 @@
 			"defaultValue": "Raw",
 			"allowedValues": [
 				"Raw",
-				"altair-nanoultraFuildX"
-			
+				"altair-nanoultraFuildX",
+				"altair-nanoultraFuildXwithNVIDIADriver"
 			],
 			"type": "String",
 			"metadata": {
