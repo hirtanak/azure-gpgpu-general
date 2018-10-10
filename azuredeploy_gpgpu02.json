@@ -333,21 +333,21 @@
 				"adminUsername": "[parameters('adminUsername')]",
 				"adminPassword": "[parameters('adminPassword')]"
 			},
-            "storageProfile": {
-                "imageReference": "[variables('imageReference')]",
-                 "osDisk": {
-                    "name": "[concat(variables('jumpBoxName'),'-md-os')]",
-                    "createOption": "FromImage",
-                    "managedDisk": {
-                        "storageAccountType": "[variables('storageAccountType')]"
-                    },
-                    "diskSizeGB": "[parameters('dataDiskSize')]"
-                 }
-            },
+            		"storageProfile": {
+                		"imageReference": "[variables('imageReference')]",
+                		"osDisk": {
+				"name": "[concat(variables('jumpBoxName'),'-md-os')]",
+				"createOption": "FromImage",
+				"managedDisk": {
+					"storageAccountType": "[variables('storageAccountType')]"
+				},
+				"diskSizeGB": "[parameters('dataDiskSize')]"
+				}
+			},
 			"networkProfile": {
 				"networkInterfaces": [{
 					"id": "[resourceId('Microsoft.Network/networkInterfaces',variables('jumpBoxNicName'))]"
-				}]
+			}]
 			},
 			"diagnosticsProfile": {
 				"bootDiagnostics": {
@@ -381,8 +381,8 @@
 			]
 		},
 		{
-			"name": "NVIDIA",
 			"type": "extensions",
+			"name": "NVIDIA",
 			"apiVersion": "2015-06-15",
 			"location": "[variables('resourceLocation')]",
 			"dependsOn": [
