@@ -255,7 +255,7 @@
                         "name": "[variables('storageAccountType')]",
                         "restrictions": [ ]
                 },
-                "kind": "[variables(`storageKind`)]",
+                "kind": "[variables('storageKind')]",
                 "location": "[variables('resourceLocation')]",
                 "copy": {
                         "name": "storageLoop",
@@ -275,7 +275,7 @@
 			"name": "[variables('storageAccountType')]",
 	        	"restrictions": []
 		},
-		"kind": "[variables(`storageKind`)]",
+		"kind": "[variables('storageKind')]",
 		"location": "[variables('resourceLocation')]",
 		"copy": {
 			"name": "storageLoop",
