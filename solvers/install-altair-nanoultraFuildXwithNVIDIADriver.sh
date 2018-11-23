@@ -13,9 +13,9 @@ echo $USER,$SHARE_HOME,$LICIP,$HOST,$DOWN,$SHARE_DATA
 apt-get install -qqy gcc make linux-headers-`uname -r`
 mkdir -p /home/$USER/nvidia
 cd  /home/$USER/nvidia
-wget -P http://us.download.nvidia.com/XFree86/Linux-x86_64/390.87/NVIDIA-Linux-x86_64-390.87.run
+wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-390.87.run
 chmod +x  /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run
-sh  /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run -a -s --target /home/$USER/nvidia
+sh /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run -a -s --target /home/$USER/nvidia
 nvidia-smi
 
 # create directory
