@@ -200,7 +200,7 @@
       }
     ],
 
-		"scriptUrl": "https://raw.githubusercontent.com/hirtanak/azure-gpgpu-poc/master/",
+		"scriptUrl": "https://raw.githubusercontent.com/hirtanak/azure-gpgpu-general/master/",
 		"cnSetupScript": "cn-setup.sh",
 		"hnSetupScript": "hn-setup.sh",
 		"osType": {
