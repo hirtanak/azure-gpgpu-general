@@ -10,13 +10,13 @@ SHARE_DATA="/home/${USER}"
 echo $USER,$SHARE_HOME,$LICIP,$HOST,$DOWN,$SHARE_DATA
 
 # install driver
-yum install gcc
+yum install -y gcc
 mkdir -p /home/$USER/nvidia
 cd  /home/$USER/nvidia
 wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-390.87.run
 chmod +x  /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run
 sh /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run -a -s
-nvidia-smi
+nvidia-smi >> /home/$USER/nvidia/nvidia-smi.log
 
 # create directory
 mkdir -p $SHARE_DATA/altair
