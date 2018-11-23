@@ -6,7 +6,8 @@
 			"defaultValue": "Raw",
 			"allowedValues": [
 				"Raw",
-				"altair-nanoultraFuildX"
+				"altair-nanoultraFuildX",
+				"altair-nanoultraFuildXwithNVIDIADriver"
 			
 			],
 			"type": "String",
@@ -379,24 +380,6 @@
 				"[concat('Microsoft.Compute/virtualMachines/', variables('jumpBoxName'))]",
 				"[concat('Microsoft.Compute/virtualMachineScaleSets/',variables('namingInfix'))]"
 			]
-		},
-		{
-			"type": "extensions",
-			"name": "NVIDIA",
-			"apiVersion": "2015-06-15",
-			"location": "[variables('resourceLocation')]",
-			"dependsOn": [
-				"[concat('Microsoft.Compute/virtualMachines/', variables('jumpBoxName'))]",
-				"[concat('Microsoft.Compute/virtualMachines/', variables('jumpBoxName'),'/', 'masterExtension')]"	
-			],
-			"properties": {
-				"publisher": "Microsoft.HpcCompute",
-				"type": "NvidiaGpuDriverLinux",
-				"typeHandlerVersion": "1.1",
-				"autoUpgradeMinorVersion": true,
-				"settings": {
-				}
-			}
 		}],
 		"dependsOn": [
 			"[concat('Microsoft.Storage/storageAccounts/', variables('jumpBoxSAName'))]",
