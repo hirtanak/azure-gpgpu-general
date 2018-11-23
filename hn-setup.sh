@@ -38,7 +38,7 @@ ln -s /mnt/lts /home/$USER/lts
 #ln -s /opt/intel/impi/${impi_version}/lib64/ /opt/intel/impi/${impi_version}/lib
 
 #Install needed packages
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+yum install epel-release
 yum check-update
 yum install -y epel-release
 yum install -y nfs-utils sshpass nmap htop pdsh screen psmisc
