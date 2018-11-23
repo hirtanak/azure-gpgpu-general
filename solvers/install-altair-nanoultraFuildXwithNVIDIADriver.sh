@@ -10,12 +10,12 @@ SHARE_DATA="/home/${USER}"
 echo $USER,$SHARE_HOME,$LICIP,$HOST,$DOWN,$SHARE_DATA
 
 # install driver
-apt-get install -qqy gcc make linux-headers-`uname -r`
+yum install gcc
 mkdir -p /home/$USER/nvidia
 cd  /home/$USER/nvidia
 wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-390.87.run
 chmod +x  /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run
-sh /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run -a -s --target /home/$USER/nvidia
+sh /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run -a -s
 nvidia-smi
 
 # create directory
