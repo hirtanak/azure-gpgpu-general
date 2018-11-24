@@ -27,8 +27,9 @@ SHARE_HOME=/mnt/resource/scratch
 mkdir -p /home/$USER/.ssh
 mkdir -p /home/$USER/bin
 mkdir -p /mnt/lts
+mkdir -p /home/$USER/scratch
 
-ln -s /mnt/resource/scratch /home/$USER/scratch
+#ln -s /mnt/resource/scratch /home/$USER/scratch
 ln -s /mnt/lts /home/$USER/lts
 
 #Following lines are only needed if the head node is an RDMA connected VM
@@ -55,7 +56,7 @@ yum install -y azure-cli
 #./install_ganglia.sh $myhost azure 8649
 
 #Setup the NFS server
-echo "/mnt/resource/scratch $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
+echo "/home/$USER/scratch $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
 systemctl enable rpcbind
 systemctl enable nfs-server
 systemctl enable nfs-lock
@@ -112,6 +113,8 @@ chmod +x ./createraid.sh
 chown -R $USER:$USER /home/$USER/.ssh/
 chown -R $USER:$USER /home/$USER/bin/
 chown -R $USER:$USER /mnt/lts
+chown -R $USER:$USER /home/$USER/scratch
+chmod -R 744 /home/$USER/scratch
 
 # Don't require password for HPC user sudo
 echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
