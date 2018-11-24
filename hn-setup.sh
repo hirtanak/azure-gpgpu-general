@@ -107,7 +107,7 @@ wget https://raw.githubusercontent.com/hirtanak/azure-gpgpu-general/master/full-
 chmod +x ./full-pingpong.sh
 wget https://raw.githubusercontent.com/hirtanak/azure-gpgpu-general/master/pingsweep.sh
 chmod +x ./pingsweep.sh
-wget https://raw.githubusercontent.com/hirtanak/azure-general/master/createraid.sh
+wget https://raw.githubusercontent.com/hirtanak/azure-gpgpu-general/master/createraid.sh
 chmod +x ./createraid.sh
 
 chown -R $USER:$USER /home/$USER/.ssh/
