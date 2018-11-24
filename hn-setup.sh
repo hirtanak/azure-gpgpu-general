@@ -23,7 +23,7 @@ cat << EOF >> /etc/security/limits.conf
 EOF
 
 #Create directories needed for configuration
-SHARE_HOME=/mnt/resource/scratch
+SHARE_HOME=/home/$USER/scratch
 mkdir -p /home/$USER/.ssh
 mkdir -p /home/$USER/bin
 mkdir -p /mnt/lts
