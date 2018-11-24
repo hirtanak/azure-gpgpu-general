@@ -116,6 +116,8 @@
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
 		"publicIPAddressName": "[concat(variables('namingInfix'), 'pip')]",
 		"publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]",
+        "networkSecurityGroupsName": "[concat(variables('namingInfix'), 'nsg')]",
+        "networkSecurityGroupsId": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('networkSecurityGroupsName'))]",
 		"nicName": "[concat(variables('namingInfix'), 'nic')]",
 		"ipConfigName": "[concat(variables('namingInfix'), 'ipconfig')]",
         "dataDiskArray": [
@@ -245,26 +247,33 @@
 			"subnets": [{
 				"name": "[variables('subnetName')]",
 				"properties": {
-					"addressPrefix": "[variables('subnetPrefix')]"
-				}
+					"addressPrefix": "[variables('subnetPrefix')]",
+                    "networkSecurityGroup": {
+                        "id": "[variables('networkSecurityGroupsId')]"
+                    }
+                }
 			}]
-		}
+		},
+    	"dependsOn": [
+			"[variables('networkSecurityGroupsName')]"
+		]
 	},{
 		"type": "Microsoft.Storage/storageAccounts",
 		"name": "[variables('jumpBoxSAName')]",
 		"apiVersion": "[variables('storageApiVersion')]",
                 "sku": {
-                        "name": "[variables('storageAccountType')]"},
+                    "name": "[variables('storageAccountType')]"
+                },
                 "kind": "[variables('storageKind')]",
                 "location": "[variables('resourceLocation')]",
                 "copy": {
-                        "name": "storageLoop",
-                        "count": "[variables('saCount')]"
+                    "name": "storageLoop",
+                    "count": "[variables('saCount')]"
                 },
                 "tags": {},
                 "identity": {
-                        "type": "SystemAssigned"
-                        },
+                    "type": "SystemAssigned"
+                },
                 "properties": {
                 }
 	}, {
@@ -297,7 +306,151 @@
 				"domainNameLabel": "[variables('longNamingInfix')]"
 			}
 		}
-	}, {
+	},  {
+        "type": "Microsoft.Network/networkSecurityGroups",
+        "name": "[variables('networkSecurityGroupsName')]",
+        "apiVersion": "[variables('networkApiVersion')]",
+		"location": "[variables('resourceLocation')]",
+        "scale": null,
+        "properties": {
+            "securityRules": [
+                {
+                    "name": "SSHPort01",
+                    "properties": {
+                        "provisioningState": "Succeeded",
+                        "protocol": "TCP",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "22",
+                        "sourceAddressPrefix": "*",
+                        "destinationAddressPrefix": "*",
+                        "access": "Allow",
+                        "priority": 100,
+                        "direction": "Inbound",
+                        "sourcePortRanges": [],
+                        "destinationPortRanges": [],
+                        "sourceAddressPrefixes": [],
+                        "destinationAddressPrefixes": []
+                    }
+                }
+            ],
+            "defaultSecurityRules": [
+                {
+                    "name": "AllowVnetInBound",
+                    "properties": {
+                        "provisioningState": "Succeeded",
+                        "description": "Allow inbound traffic from all VMs in VNET",
+                        "protocol": "*",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "*",
+                        "sourceAddressPrefix": "VirtualNetwork",
+                        "destinationAddressPrefix": "VirtualNetwork",
+                        "access": "Allow",
+                        "priority": 65000,
+                        "direction": "Inbound",
+                        "sourcePortRanges": [],
+                        "destinationPortRanges": [],
+                        "sourceAddressPrefixes": [],
+                        "destinationAddressPrefixes": []
+                    }
+                },
+                {
+                    "name": "AllowAzureLoadBalancerInBound",
+                    "properties": {
+                        "provisioningState": "Succeeded",
+                        "description": "Allow inbound traffic from azure load balancer",
+                        "protocol": "*",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "*",
+                        "sourceAddressPrefix": "AzureLoadBalancer",
+                        "destinationAddressPrefix": "*",
+                        "access": "Allow",
+                        "priority": 65001,
+                        "direction": "Inbound",
+                        "sourcePortRanges": [],
+                        "destinationPortRanges": [],
+                        "sourceAddressPrefixes": [],
+                        "destinationAddressPrefixes": []
+                    }
+                },
+                {
+                    "name": "DenyAllInBound",
+                    "properties": {
+                        "provisioningState": "Succeeded",
+                        "description": "Deny all inbound traffic",
+                        "protocol": "*",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "*",
+                        "sourceAddressPrefix": "*",
+                        "destinationAddressPrefix": "*",
+                        "access": "Deny",
+                        "priority": 65500,
+                        "direction": "Inbound",
+                        "sourcePortRanges": [],
+                        "destinationPortRanges": [],
+                        "sourceAddressPrefixes": [],
+                        "destinationAddressPrefixes": []
+                    }
+                },
+                {
+                    "name": "AllowVnetOutBound",
+                    "properties": {
+                        "provisioningState": "Succeeded",
+                        "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+                        "protocol": "*",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "*",
+                        "sourceAddressPrefix": "VirtualNetwork",
+                        "destinationAddressPrefix": "VirtualNetwork",
+                        "access": "Allow",
+                        "priority": 65000,
+                        "direction": "Outbound",
+                        "sourcePortRanges": [],
+                        "destinationPortRanges": [],
+                        "sourceAddressPrefixes": [],
+                        "destinationAddressPrefixes": []
+                    }
+                },
+                {
+                    "name": "AllowInternetOutBound",
+                    "properties": {
+                        "provisioningState": "Succeeded",
+                        "description": "Allow outbound traffic from all VMs to Internet",
+                        "protocol": "*",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "*",
+                        "sourceAddressPrefix": "*",
+                        "destinationAddressPrefix": "Internet",
+                        "access": "Allow",
+                        "priority": 65001,
+                        "direction": "Outbound",
+                        "sourcePortRanges": [],
+                        "destinationPortRanges": [], 
+                        "sourceAddressPrefixes": [],
+                        "destinationAddressPrefixes": []
+                    }
+                },
+                {
+                    "name": "DenyAllOutBound",
+                    "properties": {
+                        "provisioningState": "Succeeded",
+                        "description": "Deny all outbound traffic",
+                        "protocol": "*",
+                        "sourcePortRange": "*",
+                        "destinationPortRange": "*",
+                        "sourceAddressPrefix": "*",
+                        "destinationAddressPrefix": "*",
+                        "access": "Deny",
+                        "priority": 65500,
+                        "direction": "Outbound",
+                        "sourcePortRanges": [],
+                        "destinationPortRanges": [],
+                        "sourceAddressPrefixes": [],
+                        "destinationAddressPrefixes": []
+                    }
+                }
+            ]
+        }
+    },  {
 		"type": "Microsoft.Network/networkInterfaces",
 		"name": "[variables('jumpBoxNicName')]",
 		"apiVersion": "[variables('networkApiVersion')]",
@@ -334,18 +487,19 @@
 				"computerName": "[variables('jumpBoxName')]",
 				"adminUsername": "[parameters('adminUsername')]",
 				"adminPassword": "[parameters('adminPassword')]"
-			},
-            		"storageProfile": {
-                		"imageReference": "[variables('imageReference')]",
-                		"osDisk": {
-				"name": "[concat(variables('jumpBoxName'),'-md-os')]",
-				"createOption": "FromImage",
-				"managedDisk": {
-					"storageAccountType": "[variables('storageAccountType')]"
-				},
-				"diskSizeGB": "[parameters('dataDiskSize')]"
-				}
-			},
+	    	},
+            "storageProfile": {
+            	"imageReference": "[variables('imageReference')]",
+            	"osDisk": {
+		    	    "name": "[concat(variables('jumpBoxName'),'-md-os')]",
+			        "createOption": "FromImage",
+				    "managedDisk": {
+			            "storageAccountType": "[variables('storageAccountType')]"
+		            },
+		            "diskSizeGB": "320"
+		        },
+                "dataDisks": "[take(variables('dataDiskArray'),parameters('nbDataDisks'))]"
+	        },
 			"networkProfile": {
 				"networkInterfaces": [{
 					"id": "[resourceId('Microsoft.Network/networkInterfaces',variables('jumpBoxNicName'))]"
