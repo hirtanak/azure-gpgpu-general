@@ -27,7 +27,7 @@ wget -q https://hirostpublicshare.blob.core.windows.net/solvers/ultraFluidX.v201
 wget -q https://hirostpublicshare.blob.core.windows.net/solvers/altair_licensing_14.0.2.linux_x64.bin -O $SHARE_DATA/scratch/altair/altair_licensing_14.0.2.linux_x64.bin
 wget -q https://hirostpublicshare.blob.core.windows.net/solvers/$DOWN.tar.gz -O $SHARE_DATA/altair/$DOWN.tar.gz
 #chown -R $USER:$USER /home/$USER/altair
-chown -R $USER:$USER $SHARE_DATA/altair
+chown -R $USER:$USER $SHARE_DATA/scratch/altair
 
 cd $SHARE_DATA/scratch/altair/
 tar -zxvf $SHARE_DATA/scratch/altair/20180806_nanoFluidX_SA_2018.0.0.10_beta_SP.tar.gz -C $SHARE_DATA/scratch/altair
