@@ -30,7 +30,7 @@ wget -q https://hirostpublicshare.blob.core.windows.net/solvers/$DOWN.tar.gz -O 
 chown -R $USER:$USER $SHARE_DATA/altair
 
 cd $SHARE_DATA/scratch/altair/
-tar -zxvf $SHARE_DATA/altair/20180806_nanoFluidX_SA_2018.0.0.10_beta_SP.tar.gz -C $SHARE_DATA/scratch/altair
+tar -zxvf $SHARE_DATA/scratch/altair/20180806_nanoFluidX_SA_2018.0.0.10_beta_SP.tar.gz -C $SHARE_DATA/scratch/altair
 chown -R $USER:$USER /home/$USER/scratch/altair/20180806_nanoFluidX_SA_2018.0.0.10_beta_SP
 
 cd $SHARE_DATA/scratch/altair/ultraFuildX
