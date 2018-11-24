@@ -13,9 +13,11 @@ echo $USER,$SHARE_HOME,$LICIP,$HOST,$DOWN,$SHARE_DATA
 yum install -y gcc
 mkdir -p /home/$USER/nvidia
 cd  /home/$USER/nvidia
+#wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-390.87.run
+#chmod +x  /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run
 wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-390.87.run
-chmod +x  /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run
-sh /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run -a -s
+chmod +x  /home/$USER/nvidia/NVIDIA-Linux-x86_64-410.78.run
+sh /home/$USER/nvidia/NVIDIA-Linux-x86_64-410.78.run -a -s
 nvidia-smi >> /home/$USER/nvidia/nvidia-smi.log
 
 # create directory
