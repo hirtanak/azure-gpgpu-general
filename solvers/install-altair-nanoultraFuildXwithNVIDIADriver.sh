@@ -10,12 +10,12 @@ SHARE_DATA="/home/${USER}"
 echo $USER,$SHARE_HOME,$LICIP,$HOST,$DOWN,$SHARE_DATA
 
 # install driver
-yum install -y gcc
+yum install -y dkms gcc 
 mkdir -p /home/$USER/nvidia
 cd  /home/$USER/nvidia
 #wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-390.87.run
 #chmod +x  /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run
-wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-390.87.run
+wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-410.78.run
 chown -R $USER:$USER /home/$USER/nvidia
 chmod +x  /home/$USER/nvidia/NVIDIA-Linux-x86_64-410.78.run
 sh /home/$USER/nvidia/NVIDIA-Linux-x86_64-410.78.run -a -s
