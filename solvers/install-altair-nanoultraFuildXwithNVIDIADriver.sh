@@ -16,6 +16,7 @@ cd  /home/$USER/nvidia
 #wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-390.87.run
 #chmod +x  /home/$USER/nvidia/NVIDIA-Linux-x86_64-390.87.run
 wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-390.87.run
+chown -R $USER:$USER /home/$USER/nvidia
 chmod +x  /home/$USER/nvidia/NVIDIA-Linux-x86_64-410.78.run
 sh /home/$USER/nvidia/NVIDIA-Linux-x86_64-410.78.run -a -s
 nvidia-smi >> /home/$USER/nvidia/nvidia-smi.log
