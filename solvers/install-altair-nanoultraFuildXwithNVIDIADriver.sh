@@ -11,7 +11,7 @@ echo $USER,$SHARE_HOME,$LICIP,$HOST,$DOWN,$SHARE_DATA
 
 # install driver
 yum install -y dkms gcc kernel-devel kernel-headers
-yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+yum install -y kernel-devel-$(uname -r) kernel-headers-$(uname -r)
 mkdir -p /home/$USER/nvidia
 cd  /home/$USER/nvidia
 #wget https://hirostpublicshare.blob.core.windows.net/solvers/NVIDIA-Linux-x86_64-390.87.run
